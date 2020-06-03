@@ -1,3 +1,10 @@
+// im saving my cookie value with userdefault after successful login 
+ if let cookie = HTTPCookieStorage.shared.cookies?.first(where: {$0.name.contains("cookie_name")}) {
+    UserDefaults.standard.set(cookie.value, forKey: "tokenValue") //setObject
+    UserDefaults.standard.set(cookie.name, forKey: "tokenName")
+ }
+// after that im sending the token value within request body so i can access to the api functionalities 
+
 func setOnlineCoupons(status:Bool, completion: ((String) -> Void)? = nil) {
         let url = URL(string: Constants.SERVER_URL+"/set_online_coupons")
         guard let requestUrl = url else { fatalError() }
